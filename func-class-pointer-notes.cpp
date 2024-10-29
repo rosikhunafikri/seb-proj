@@ -26,7 +26,7 @@ class Player {
 void subfive(int* apoint){
     cout << "pointer: " << apoint << endl;
     cout << "value: " << *apoint << endl; //dereference
-    
+// coret2 test    ugtiyifghghjkjhhgjkl;'kjjhhjkhjkkjhgcfghuhjgchj'
     *apoint = 5;
 }
 
@@ -35,6 +35,8 @@ void swap(int* x, int* y){
     *x = *y;
     *y = z;
 }
+
+
 
 
 int main() {
@@ -47,6 +49,8 @@ int main() {
     int* apoint = &a; //get address of a;
     subfive(apoint);
     cout << "a is: " << a << endl;
+//coret2 test asfdsdfsdfsdfsdfsdfdsfsdfdsfsdsf
+
 
     int x = 5;
     int y = 10;
