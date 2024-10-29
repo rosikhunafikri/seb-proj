@@ -1,0 +1,4 @@
+Read a File
+To read from a file, use either the ifstream or fstream class, and the name of the file.
+
+Note that we also use a while loop together with the getline() function (which belongs to the ifstream class) to read the file line by line, and to print the content of the file:
