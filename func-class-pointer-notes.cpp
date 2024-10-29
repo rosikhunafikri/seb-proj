@@ -26,7 +26,7 @@ class Player {
 void subfive(int* apoint){
     cout << "pointer: " << apoint << endl;
     cout << "value: " << *apoint << endl; //dereference
-    
+    ugtiyifghghjkjhhgjkl;'kjjhhjkhjkkjhgcfghuhjgchj'
     *apoint = 5;
 }
 
@@ -35,6 +35,8 @@ void swap(int* x, int* y){
     *x = *y;
     *y = z;
 }
+
+
 
 
 int main() {
