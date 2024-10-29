@@ -48,5 +48,12 @@ int main() {
     subfive(apoint);
     cout << "a is: " << a << endl;
 
+    int x = 5;
+    int y = 10;
+
+    int z = add(x,y);
+
+    cout << "z is: " << z << endl;
+
     return 0;
 }
