@@ -1,6 +1,7 @@
 // Online C++ compiler to run C++ program online
 #include <iostream>
 #include <string.h>
+#include <arithmetic.h>
 
 using namespace std;
 
@@ -35,10 +36,6 @@ void swap(int* x, int* y){
     *y = z;
 }
 
-int add(int x, int y){
-    int z = x + y;
-    return z;
-}
 
 int main() {
     Player p1 = Player("qwer", 100, 10);
