@@ -7,11 +7,16 @@ int main() {
   ofstream MyFile("filename123.txt");
 
   // Write to the file
+  int a = 4;
+  int b = 2;
+
   MyFile << "Files can be tricky, but it is fun enough!";
 
   cout << "cout between lines" << endl;
 
   MyFile << "second liiiineee!";
+
+  MyFile << "a plus b is " << a+b;
 
 
   // Close the file
