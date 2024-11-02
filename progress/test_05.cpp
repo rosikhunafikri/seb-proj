@@ -124,11 +124,20 @@ float gradient_func (Point A, Point B){
   return m;
 }
 
-Line eol_g_p (Point A, float gradient){
-    Line output;
-  float c_gp = A.y - (gradient * A.x);
+float perpendicular_gradient_func(float m){
 
-  output.gradient = gradient;
+  float m_perp = -1.0 / m;
+
+  return m_perp;
+
+}
+
+Line eol_g_p (Point A, float gradient){
+  Line output;
+  float new_gradient = perpendicular_gradient_func(gradient);
+  float c_gp = A.y - (new_gradient * A.x);
+
+  output.gradient = new_gradient;
   output.c_value = c_gp;
 
   return output;
@@ -148,16 +157,40 @@ Line eol_pp (Point A, Point B){
 
 }
 
-bool affine_dependent_check (vector <Point> A){
+bool similarity_check(Point A, Point B){
+  bool x_similar = abs(A.x - B.x) < 0.0001;
+  bool y_similar = abs(A.y - B.y) < 0.0001;
+  return x_similar && y_similar;
+}
 
+bool affine_dependent_check (vector <Point> A){
+    cout << "checking if affine dependent" << endl;
     // 0 is false. !0 is true
     
     Line affine_checker;
     
     affine_checker = eol_pp(A[0], A[1]);
 
-    return A[2].y == affine_checker.gradient * A[2].x + affine_checker.c_value;   
+    cout << "gradient: " << affine_checker.gradient << ". c = " <<  affine_checker.c_value << endl;
+    cout << "y = " << A[2].y << endl;
+    cout << "mx+c = " << affine_checker.gradient * A[2].x + affine_checker.c_value << endl; 
+    //
+    bool result = abs (affine_checker.gradient * A[2].x + affine_checker.c_value - A[2].y) < 0.0001;
+    cout << "affine check result: " << result << endl;
+    return result;   
 }
+
+Point new_coordinate_func (Line A, Line B){
+
+  Point new_coordinate;
+  float x = (B.c_value - A.c_value) / (A.gradient - B.gradient);
+  float y = (B.gradient) * x + B.c_value;
+  new_coordinate.x = x;
+  new_coordinate.y = y;
+
+  return new_coordinate;
+}
+
 
 Point Point::ref = Point(0,0);
 
@@ -175,6 +208,7 @@ int main() {
     Point D = Point(1,2); // intitial centre point
     Point E = Point(-1,1);
     Point F = Point(2,-3);
+    Point F_affine = Point(2.05, -3.13);
     Point avg;
 
     coordinate_placeholder.push_back(A);
@@ -183,32 +217,58 @@ int main() {
     coordinate_placeholder.push_back(D);
     coordinate_placeholder.push_back(E);
     coordinate_placeholder.push_back(F);
+    // coordinate_placeholder.push_back(C);
+    // coordinate_placeholder.push_back(C);
+    // coordinate_placeholder.push_back(F);
+    // coordinate_placeholder.push_back(F_affine);
+    // coordinate_placeholder.push_back(E);
+    // coordinate_placeholder.push_back(A);
+    // coordinate_placeholder.push_back(F);
+    // coordinate_placeholder.push_back(C);
 
     avg = closest_point_to_center(coordinate_placeholder);
 
-    cout << "Midpoint A and C: " << midpoint_func(A,C) << endl;
-    cout << "Gradient A and C: " << gradient_func(A,C) << endl;
+    // cout << "Midpoint A and C: " << midpoint_func(A,C) << endl;
+    // cout << "Gradient A and C: " << gradient_func(A,C) << endl;
 
-    cout << "Average Centre Point: " << avg << endl;
+    // cout << "Average Centre Point: " << avg << endl;
     
-    cout << "\n" << endl;
-    cout << "Initial S: " << endl;
+    // cout << "\n" << endl;
+    // cout << "Initial S: " << endl;
 
-    for (int i = 0; i < coordinate_placeholder.size(); i++){
-        cout << coordinate_placeholder[i] << endl;
-    }
+    // for (int i = 0; i < coordinate_placeholder.size(); i++){
+    //     cout << coordinate_placeholder[i] << endl;
+    // }
     
     sorted_coordinate_placeholder = point_sorter(coordinate_placeholder, avg);
     
-    vector <Point> three_points;
+    vector <Point> three_points; // can write as our T
     float max_distance = sorted_coordinate_placeholder[0].segment(); //circle radius
     // Point point_two, point_three;
 
-    for (int i = 0; i < 3; i++){
-
-        Point p = sorted_coordinate_placeholder[i];
-        three_points.push_back(p);
-
+    int i_three = 0;
+    while( three_points.size() < 3 ){
+        Point p = sorted_coordinate_placeholder[i_three];
+        cout << "checking " << p << endl;
+        bool is_similar = false;
+        for(int j=0; j<three_points.size(); j++){
+          cout << "check similarity " << p << "and " << three_points[j] << endl;
+          if (similarity_check(three_points[j], p)){
+          cout << "result: similar, dropping point "<< p << endl;
+            is_similar = true;
+            break;
+          }
+        }
+        if(!is_similar){
+          three_points.push_back(p);
+        }
+        if (three_points.size() == 3){
+          if(affine_dependent_check(three_points)){
+            cout << "result: affine dependent" << endl;
+            three_points.pop_back();
+          }
+        }
+        i_three++;
     }
 
     cout << "Three Points: " << endl;
@@ -218,11 +278,22 @@ int main() {
         cout << three << endl;
     }
 
-    cout << "Point dependent? " << affine_dependent_check(three_points) << endl;
+    // cout << "Point dependent? " << affine_dependent_check(three_points) << endl;
 
-    
+    Line AC, FC;
+    Point mp_A;
+    Point mp_B;
+    float grad_A;
+    float grad_B;
+    grad_A = gradient_func(three_points[0], three_points[1]);
+    grad_B = gradient_func(three_points[0], three_points[2]);
+    mp_A = midpoint_func(three_points[0], three_points[1]);
+    mp_B = midpoint_func(three_points[0], three_points[2]);
 
-    
+    AC = eol_g_p(mp_A,grad_A);
+    FC = eol_g_p(mp_B,grad_B);
+
+    cout << "New coordinates are: " << new_coordinate_func(AC,FC) << endl;
 
 
 
