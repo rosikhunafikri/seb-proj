@@ -3,201 +3,15 @@
 #include <cmath>
 #include <array>
 #include <bits/stdc++.h>
-// #include "geometric_functions.h"
+#include "geometric_functions.h"
 
 using namespace std;
 
-class Line {       
-  public:             
-    float gradient;        
-    float c_value; 
-    Line (float g, float c){
-      gradient = g;
-      c_value = c;
-    }
-    Line(){
-        gradient = 0.0;
-        c_value = 0.0;
-    }
-};
 
-
-class Point {       
-  public:
-    static Point ref;     
-    float x;        
-    float y;
-    Point (float x_, float y_){
-      x = x_;
-      y = y_;
-    }
-    Point (){
-      x = ref.x;
-      y = ref.y;
-    }
-
-    float segment(){
-        float segment = sqrt(pow((x - ref.x),2) + pow((y - ref.y),2));
-        return segment;
-    }
-
-    Point refers_to(){
-        return Point(x - ref.x, y - ref.y);
-    }
-
-    //for cout, leave as it is
-    friend ostream& operator<<(ostream& os, const Point& obj) {
-        os << "(" << obj.x << "," << obj.y << ")";
-        return os;
-    }
-};
-
-
-bool point_comparator(Point a, Point b){
-    bool a_is_bigger; //for descending
-    a_is_bigger = a.segment() > b.segment();
-    return a_is_bigger;
-}
-
-vector <Point> point_sorter (vector <Point> points, Point avg){
-    Point random_point = avg; // for the D point which is [1,2]
-    Point::ref = random_point;
-
-    vector<Point> sorted;
-    cout << "inside point sorter" << endl;
-    /*
-    for (int i = 0 ; i < points.size() ; i++){
-        sorted[i] = points[i];
-        cout << i << ": " << sorted[i] << endl;
-    }
-    */
-    sorted = points;
-    cout << "begin sorting..." << endl;
-    sort(sorted.begin(), sorted.end(), point_comparator);
-    cout << "sorted:" << endl;
-    for (int i = 0 ; i < sorted.size() ; i++){
-        cout << i << ": " << sorted[i] << endl;
-    }
-
-
-    return sorted;
-
-}
-
-Point midpoint_func (Point A, Point B){
-
-  Point mid;
-
-  float x_mid = (A.x + B.x) / 2;
-  float y_mid = (A.y + B.y) / 2;
-
-  mid.x = x_mid;
-  mid.y = y_mid;
-
-  return mid;
-
-}
-
-//modified: finds the average point instead
-Point closest_point_to_center(vector<Point> points) {
-
-    Point avg_point;
-    Point accumulator;
-    size_t num_points = points.size();
-
-    for (int i = 0; i < points.size(); i++){
-        accumulator.x += points[i].x;
-        accumulator.y += points[i].y;
-    }
-
-    avg_point.x = accumulator.x / num_points;
-    avg_point.y = accumulator.y / num_points;
-    
-
-    return avg_point; 
-}
-
-float gradient_func (Point A, Point B){
-
-  float m = (B.y - A.y) / (B.x - A.x);
-
-  return m;
-}
-
-float perpendicular_gradient_func(float m){
-
-  float m_perp = -1.0 / m;
-
-  return m_perp;
-
-}
-
-Line eol_g_p (Point A, float gradient){
-  Line output;
-  float new_gradient = perpendicular_gradient_func(gradient);
-  float c_gp = A.y - (new_gradient * A.x);
-
-  output.gradient = new_gradient;
-  output.c_value = c_gp;
-
-  return output;
-
-}
-
-Line eol_pp (Point A, Point B){
-    Line output;
-  float m_pp = gradient_func(A,B);
-
-  float c_pp = (-m_pp * A.x) + A.y; //MUST USE FIRST POINT AS REFERENCE!
-
-  output.gradient = m_pp;
-  output.c_value = c_pp;
-
-  return output;
-
-}
-
-bool similarity_check(Point A, Point B){
-  bool x_similar = abs(A.x - B.x) < 0.0001;
-  bool y_similar = abs(A.y - B.y) < 0.0001;
-  return x_similar && y_similar;
-}
-
-bool affine_dependent_check (vector <Point> A){
-    cout << "checking if affine dependent" << endl;
-    // 0 is false. !0 is true
-    
-    Line affine_checker;
-    
-    affine_checker = eol_pp(A[0], A[1]);
-
-    cout << "gradient: " << affine_checker.gradient << ". c = " <<  affine_checker.c_value << endl;
-    cout << "y = " << A[2].y << endl;
-    cout << "mx+c = " << affine_checker.gradient * A[2].x + affine_checker.c_value << endl; 
-    //
-    bool result = abs (affine_checker.gradient * A[2].x + affine_checker.c_value - A[2].y) < 0.0001;
-    cout << "affine check result: " << result << endl;
-    return result;   
-}
-
-Point new_coordinate_func (Line A, Line B){
-
-  Point new_coordinate;
-  float x = (B.c_value - A.c_value) / (A.gradient - B.gradient);
-  float y = (B.gradient) * x + B.c_value;
-  new_coordinate.x = x;
-  new_coordinate.y = y;
-
-  return new_coordinate;
-}
-
-
-Point Point::ref = Point(0,0);
 
 int main() {
 
-    // vector <float> midpoint_placeholder;
-    // vector <float> new_coordinate_placeholder;
+    
     vector<Point> coordinate_placeholder;
     vector<Point> sorted_coordinate_placeholder;
     // [[-3,10]]
@@ -281,21 +95,34 @@ int main() {
     // cout << "Point dependent? " << affine_dependent_check(three_points) << endl;
 
     Line AC, FC;
-    Point mp_A;
-    Point mp_B;
-    float grad_A;
-    float grad_B;
-    grad_A = gradient_func(three_points[0], three_points[1]);
-    grad_B = gradient_func(three_points[0], three_points[2]);
-    mp_A = midpoint_func(three_points[0], three_points[1]);
-    mp_B = midpoint_func(three_points[0], three_points[2]);
+    // Point mp_A;
+    // Point mp_B;
+    // float grad_A;
+    // float grad_B;
+    // grad_A = gradient_func(three_points[0], three_points[1]);
+    // grad_B = gradient_func(three_points[0], three_points[2]);
+    // mp_A = midpoint_func(three_points[0], three_points[1]);
+    // mp_B = midpoint_func(three_points[0], three_points[2]);
 
-    AC = eol_g_p(mp_A,grad_A);
-    FC = eol_g_p(mp_B,grad_B);
+    // AC = eol_g_p(mp_A,grad_A);
+    // FC = eol_g_p(mp_B,grad_B);
 
+    
+
+    AC = perpendicular_bisector_func(three_points[0], three_points[1]);
+    FC = perpendicular_bisector_func(three_points[0], three_points[2]);
+
+
+    Point new_center = new_coordinate_func(AC,FC);
     cout << "New coordinates are: " << new_coordinate_func(AC,FC) << endl;
 
-
+    //set ref to new coordinate
+    Point::ref = new_center;
+    cout << "final radius check from T" << endl;
+    for(int i = 0 ; i<three_points.size(); i++){
+      Point p = three_points[i];
+      cout <<"radius from " << p << ": " << p.segment() << endl;
+    }
 
   return 0;
 }

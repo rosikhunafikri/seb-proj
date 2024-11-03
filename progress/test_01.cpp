@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <cmath>
-#include "geometric_functions.h"
+// #include "geometric_functions.h"
 
 using namespace std;
 

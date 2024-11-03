@@ -3,7 +3,7 @@
 #include <cmath>
 #include <array>
 #include <bits/stdc++.h>
-#include "geometric_functions.h"
+// #include "geometric_functions.h"
 
 using namespace std;
 
