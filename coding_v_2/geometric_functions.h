@@ -171,8 +171,8 @@ float gradient_func (Point A, Point B){
   // (B.y - A.y) / (B.x - A.x)
   //      2      /      0        --> problem
   
-  if (B.x - A.x < 0.0001){
-    m = (B.y - A.y) / 0.0001;
+  if (abs(B.x - A.x) < 0.0000000001){
+    m = (B.y - A.y) / 0.0000000001;
     return m;
   }
 
@@ -253,7 +253,9 @@ bool affine_dependent_check(vector<Point> &A) {
     double error_margin = calculate_error_margin(m, c_max);
 
     // Check if the third point lies on the line within the computed error margin
-    bool result = abs(affine_checker.gradient * A[2].x + affine_checker.c_value - A[2].y) < error_margin;
+
+    //let's use hardcoded error margin, as using function defined error margin causes bug
+    bool result = abs(affine_checker.gradient * A[2].x + affine_checker.c_value - A[2].y) < 0.0000000001;
     return result;
 }
 
