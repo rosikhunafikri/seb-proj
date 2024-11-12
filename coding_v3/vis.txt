@@ -1,0 +1,38 @@
+average: (0.534517,0.423362)
+(0.621124,0.788046): 1.0034
+(0.753469,0.680263): 1.01512
+(0.186286,0.554938): 0.58537
+(0.15062,0.789099): 0.803345
+(0.428019,0.0443595): 0.430311
+(0.93256,0.301172): 0.979986
+(0.41833,0.844795): 0.942698
+(0.854357,0.0767526): 0.857798
+(0.990647,0.117052): 0.997538
+(0.00976141,0.0371407): 0.0384021
+
+
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+result: affine dependent
+Two Points:
+(0.534517,0.423362)
+(0.00976141,0.0371407)
+(0,nan)

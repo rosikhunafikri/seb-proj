@@ -1,0 +1,80 @@
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+check closest (0,-1)
+intersection: (0.734257,0.0314862)
+closest!0.744487
+center: (0.734257,0.0314862)
+max: (2,0)
+radius max: 2.01062
+2nd max: (0,-1)
+radius max: 1.05005
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
+check closest(3rd) (0,1)
+closest! (3rd)0.0352026
+intersection (3rd): (0.75,0)
