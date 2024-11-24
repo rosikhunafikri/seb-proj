@@ -1,0 +1,2 @@
+New coordinates are: (0.303868,0.504483)
+radius is 5.46275
