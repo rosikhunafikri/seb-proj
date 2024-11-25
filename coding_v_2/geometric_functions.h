@@ -49,6 +49,10 @@ class Point {
         return Point(x - ref.x, y - ref.y);
     }
 
+    float dot(Point& p2) {
+        return x*p2.x + y*p2.y;
+    }
+
     //for cout, leave as it is
     friend ostream& operator<<(ostream& os, const Point& obj) {
         os << "(" << obj.x << "," << obj.y << ")";

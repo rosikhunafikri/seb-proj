@@ -7,7 +7,8 @@
 using namespace std;
 using namespace std::chrono;
 
-int main() {
+int main(int argn,char **argv) {
+    bool with_output = argn > 1 && std::string(argv[1]) == "output";
     vector<Point> points;
     ofstream outfile("output.txt");
     if (!outfile) {
@@ -18,21 +19,22 @@ int main() {
     loadPoints("data.txt", points);
     vector<Point> coordinate_placeholder(points.begin(), points.end());
 
+
+    // OUTFILE POINTS
+    
+    if (with_output){
+        outfile << fixed; //output number in fixed format, instead of scientific format
+        for (auto &point: coordinate_placeholder) {
+            //cout << point << ": " << point.segment() << endl;
+            outfile << point << endl;
+        }
+    }
+
     //start clock
     auto start = high_resolution_clock::now();
 
     const Point avg = closest_point_to_center(coordinate_placeholder);
     cout << "average: " << avg << endl;
-
-    /* OUTFILE POINTS
-
-    outfile << fixed; //output number in fixed format, instead of scientific format
-    for (auto &point: coordinate_placeholder) {
-        //cout << point << ": " << point.segment() << endl;
-        outfile << point << endl;
-    }
-    */
-
     
     vector<Point> sorted_coordinate_placeholder = point_sorter(coordinate_placeholder, avg);
 

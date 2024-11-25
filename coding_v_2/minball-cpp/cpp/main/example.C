@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <cstdio>
+#include <fstream>
 
 #include "Seb.h"
 #include "Seb_debug.h"
@@ -36,6 +37,7 @@ int main(int argn,char **argv) {
   const bool on_boundary = argn > 3 && std::string(argv[3]) == "boundary";
 
   // Construct n random points in dimension d
+  ofstream outfile("data-miniball.txt");
   PointVector S;
   vector<double> coords(d);
   srand(clock());
@@ -56,6 +58,7 @@ int main(int argn,char **argv) {
         coords[j] *= len;
     }
     S.push_back(Point(d,coords.begin()));
+    //outfile << Point(d, coords.begin()) << endl;
   }
   cout << "Starting computation..." << endl
        << "====================================================" << endl;

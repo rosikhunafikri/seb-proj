@@ -62,12 +62,13 @@ namespace SEB_NAMESPACE {
     {
       return c.end();
     }
-
+      /*
         //for cout, leave as it is
     friend ostream& operator<<(ostream& os, const Point& obj) {
         os << "(" << obj.x << "," << obj.y << ")";
         return os;
     }
+    */
 
   private: // member fields:
     std::vector<Float> c;       // Cartesian center coordinates

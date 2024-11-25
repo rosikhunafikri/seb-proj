@@ -5,7 +5,7 @@ from scipy.stats import uniform
 
 
 tipe = "uniform"
-n = 100
+n = 1000000
 start = 0
 width = 1
 uniform_x = uniform.rvs(size=n, loc = start, scale=width)
